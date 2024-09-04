@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# This prints the word "school" if it is found in the argument
+# This script prints all occurrences of the word "School" from the argument
 
-# The regular expression matches the word "School"
+# Match the word "School" and print all occurrences
 puts ARGV[0].scan(/School/).join
