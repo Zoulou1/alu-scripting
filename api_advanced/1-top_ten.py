@@ -1,20 +1,22 @@
 #!/usr/bin/python3
-"""DOCS"""
+"""Print the titles of the first 10Hot Posts"""
 import requests
 
+
 def top_ten(subreddit):
-    """Docs"""
-    reddit_url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    
-    # Fetch subreddit data with redirects disabled
-    response = requests.get(reddit_url, headers=headers, allow_redirects=False)
-    
+    """The top ten titles"""
+    headers = {'User-Agent': 'MyAPI/0.0.1'}
+    url = "https://reddit.com/r/{}.json".format(subreddit)
+    response = requests.get(url, headers=headers)
+
     if response.status_code == 200:
-        data = response.json().get('data', {}).get('children', [])
-        for post in data[:10]:
-            print(post['data'].get('title'))
-        return "OK"
+        json_data = response.json()
+        for i in range(10):
+            print(
+                    json_data.get('data')
+                    .get('children')[i]
+                    .get('data')
+                    .get('title')
+                )
     else:
         print(None)
-        return None
